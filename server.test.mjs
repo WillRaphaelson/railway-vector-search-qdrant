@@ -32,6 +32,9 @@ test("health route and invalid vector validation", async () => {
     const health = await fetch(`http://127.0.0.1:${port}/health`);
     assert.equal(health.status, 200);
     assert.deepEqual(await health.json(), { status: "ok" });
+    const qdrantHealth = await fetch(`http://127.0.0.1:${port}/api/qdrant-health`);
+    assert.equal(qdrantHealth.status, 200);
+    assert.deepEqual(await qdrantHealth.json(), { status: "ready", qdrant: { title: "qdrant", version: "test" } });
     const invalid = await fetch(`http://127.0.0.1:${port}/api/search`, {
       method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ vector: [1, 2] }),
     });
