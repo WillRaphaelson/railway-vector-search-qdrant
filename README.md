@@ -22,7 +22,7 @@ The demo uses fixed vectors so the database connection and query workflow are vi
 
 The `.railway/railway.ts` file declares the Qdrant image, volume mount, Qdrant API service, private service reference, and app healthcheck using Railway Infrastructure as Code. The API key uses `preserve()` so the value is stored in Railway rather than committed to source control. Set `QDRANT__SERVICE__API_KEY` on the Qdrant service in Railway before exposing any public route to the demo app.
 
-The template version published from the tested project will generate an API key for each new deployment. The published template also deploys the application with a public HTTPS endpoint so the demo page can be opened in a browser. The Qdrant service itself stays on the private network.
+The published template generates an API key for each new deployment. It also deploys the application with a public HTTPS endpoint so the demo page can be opened in a browser. The Qdrant service itself stays on the private network.
 
 ## Template overview
 
