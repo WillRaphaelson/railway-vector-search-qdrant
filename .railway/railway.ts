@@ -19,6 +19,7 @@ const qdrant = service("qdrant", {
     "/qdrant/storage": qdrantData,
   },
   env: {
+    PORT: "6333",
     QDRANT__SERVICE__API_KEY: preserve(),
   },
   healthcheck: "/readyz",
@@ -30,7 +31,7 @@ const app = service("qdrant-demo-app", {
   healthcheck: "/health",
   env: {
     PORT: "3000",
-    QDRANT_URL: `http://${qdrant.env.RAILWAY_PRIVATE_DOMAIN}:6333`,
+    QDRANT_URL: qdrant.env.RAILWAY_PRIVATE_DOMAIN,
     QDRANT_API_KEY: qdrant.env.QDRANT__SERVICE__API_KEY,
   },
 });

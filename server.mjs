@@ -1,7 +1,8 @@
 import http from "node:http";
 
 const port = Number(process.env.PORT || 3000);
-const qdrantUrl = (process.env.QDRANT_URL || "http://localhost:6333").replace(/\/$/, "");
+const configuredQdrantUrl = process.env.QDRANT_URL || "http://localhost:6333";
+const qdrantUrl = (configuredQdrantUrl.includes("://") ? configuredQdrantUrl : `http://${configuredQdrantUrl}:6333`).replace(/\/$/, "");
 const qdrantApiKey = process.env.QDRANT_API_KEY || "";
 const collection = "railway_guide_demo";
 const samplePoints = [
